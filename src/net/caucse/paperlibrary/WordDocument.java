@@ -53,6 +53,10 @@ public class WordDocument {
 		}
 	}
 	
+	public int size() {
+		return words.size();
+	}
+	
 	public Set<String> keySet() {
 		return words.keySet();
 	}
