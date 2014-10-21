@@ -35,11 +35,11 @@ public class IndexSet<T> implements Set<T> {
 	}
 	
 	public int addReturnIndex(T obj) {
-		if (add(obj)) {
+		if (add(obj))
 			return index-1;
-		} else {
-			return -1;
-		}
+		if (typeKey.containsKey(obj))
+			return typeKey.get(obj);
+		return -1;
 	}
 	
 	@Override
