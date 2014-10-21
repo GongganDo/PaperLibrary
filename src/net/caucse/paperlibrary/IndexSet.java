@@ -34,6 +34,14 @@ public class IndexSet<T> implements Set<T> {
 		return true;
 	}
 	
+	public int addReturnIndex(T obj) {
+		if (add(obj)) {
+			return index-1;
+		} else {
+			return -1;
+		}
+	}
+	
 	@Override
 	public boolean addAll(Collection<? extends T> c) {
 		boolean changed = false;
