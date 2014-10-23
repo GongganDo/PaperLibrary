@@ -7,13 +7,21 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class WordList implements Iterable<String> {
+import com.google.gson.annotations.Expose;
+
+public class WordList implements Iterable<List<String>> {
 	
-	private ArrayList<String> words;
+	@Expose
+	private ArrayList<List<String>> words;
+	
+	private List<String> currentLine;
+	
+	@Expose
 	private Date timestamp;
 	
 	{
-		words = new ArrayList<String>();
+		words = new ArrayList<List<String>>();
+		currentLine = null;
 	}
 	
 	public WordList() {
@@ -29,18 +37,35 @@ public class WordList implements Iterable<String> {
 	}
 	
 	public boolean put(String word) {
-		return words.add(word);
+		return currentLine.add(word);
 	}
 	
 	public String get(int i) {
-		return words.get(i);
-	}
-	
-	public int size() {
-		return words.size();
+		return currentLine.get(i);
 	}
 
-	public Iterator<String> iterator() {
+	public String get(int lineNum, int wordIndex) {
+		return words.get(lineNum).get(wordIndex);
+	}
+	
+	public boolean newLine() {
+		currentLine = new ArrayList<String>();
+		return words.add(currentLine);
+	}
+	
+	public int lineSize() {
+		return words.size();
+	}
+	
+	public int wordSize() {
+		int size = 0;
+		for (List<String> line : words) {
+			size += line.size();
+		}
+		return size;
+	}
+
+	public Iterator<List<String>> iterator() {
 		return words.iterator();
 	}
 	
@@ -50,8 +75,10 @@ public class WordList implements Iterable<String> {
 	
 	public int count(String word) {
 		int c = 0;
-		for (String w : words) {
-			if (w.equals(word)) ++c;
+		for (List<String> line : words) {
+			for (String w : line) {
+				if (w.equals(word)) ++c;
+			}
 		}
 		return c;
 	}
@@ -60,15 +87,15 @@ public class WordList implements Iterable<String> {
 		return timestamp;
 	}
 	
-	public List<String> subList(int fromIndex, int toIndex) {
+	/*public List<String> subList(int fromIndex, int toIndex) {
 		return words.subList(fromIndex, toIndex);
-	}
+	}*/
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("WordList [words=").append(words).append(", timestamp=")
-				.append(timestamp).append("]");
+		builder.append("WordList [words=").append(words)
+				.append(", timestamp=").append(timestamp).append("]");
 		return builder.toString();
 	}
 }
