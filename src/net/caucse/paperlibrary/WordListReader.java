@@ -37,11 +37,6 @@ public class WordListReader {
 		if (data == null) return null;
 		
 		WordList wl = gson.fromJson(data, WordList.class);
-		/*JsonElement element = parser.parse(data);
-		JsonObject object = element.getAsJsonObject().getAsJsonObject("noun");
-		for (Entry<String, JsonElement> entry : object.entrySet()) {
-			wl.put(entry.getKey(), entry.getValue().getAsInt());
-		}*/
 		return wl;
 	}
 	
