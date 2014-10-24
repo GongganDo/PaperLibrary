@@ -12,9 +12,11 @@ public class CountMap<K> extends HashMap<K, Integer> {
 	public int add(K key) {
 		if (this.containsKey(key)) {
 			int value = this.get(key);
-			return this.put(key, ++value);
+			this.put(key, ++value);
+			return value;
 		} else {
-			return this.put(key, 1);
+			this.put(key, 1);
+			return 1;
 		}
 	}
 }
