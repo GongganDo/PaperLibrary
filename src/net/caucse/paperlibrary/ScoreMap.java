@@ -1,6 +1,7 @@
 package net.caucse.paperlibrary;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ScoreMap<K> extends HashMap<K, Double> {
 
@@ -10,6 +11,10 @@ public class ScoreMap<K> extends HashMap<K, Double> {
 	
 	public ScoreMap(int initialCapacity) {
 		super(initialCapacity);
+	}
+	
+	public ScoreMap(Map<? extends K, Double> m) {
+		super(m);
 	}
 	
 	/**
