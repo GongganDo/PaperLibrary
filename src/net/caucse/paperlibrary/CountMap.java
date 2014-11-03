@@ -3,6 +3,14 @@ package net.caucse.paperlibrary;
 import java.util.HashMap;
 
 public class CountMap<K> extends HashMap<K, Integer> {
+	
+	public CountMap() {
+		super();
+	}
+	
+	public CountMap(int initialCapacity) {
+		super(initialCapacity);
+	}
 
 	/**
 	 * 

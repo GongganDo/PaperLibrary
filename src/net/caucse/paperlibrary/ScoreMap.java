@@ -4,6 +4,14 @@ import java.util.HashMap;
 
 public class ScoreMap<K> extends HashMap<K, Double> {
 
+	public ScoreMap() {
+		super();
+	}
+	
+	public ScoreMap(int initialCapacity) {
+		super(initialCapacity);
+	}
+	
 	/**
 	 * 
 	 */
